@@ -1,5 +1,6 @@
 package com.example.demo.viajante;
 
+import com.example.demo.viajante.services.Camino;
 import com.example.demo.viajante.services.CiudadesGenerator;
 import com.example.demo.viajante.services.Distancias;
 import org.springframework.boot.SpringApplication;
@@ -11,6 +12,7 @@ import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
@@ -26,7 +28,7 @@ public class Application {
         List<List<Integer>> ciudadesArray = ciudades.leerCiudades();
         Distancias distancias = new Distancias(tam);
         distancias.calcularDistancias(ciudadesArray);
-        
+
         for (List<Integer> pos: ciudadesArray){
             System.out.println(pos.get(0)+" "+pos.get(1));
         }
@@ -37,6 +39,8 @@ public class Application {
             System.out.println("");
         }
 
+        Camino camino = new Camino(tam, distancias);
+        System.out.println("Distancia "+ camino.distancia());
 
 	}
 
