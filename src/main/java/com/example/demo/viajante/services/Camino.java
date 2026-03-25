@@ -18,6 +18,10 @@ public class Camino {
         this.distancias = distancias;
     }
 
+    public Camino(List<Integer> recorrido, Distancias distancias){
+        this.recorrido = recorrido;
+        this.distancias = distancias;
+    }
     public double distancia(){
         double distanciaRecorrida = 0.0;
         int tam = recorrido.size();
@@ -31,5 +35,20 @@ public class Camino {
             }
         }
         return distanciaRecorrida;
+    }
+
+    public List<Integer> getRecorrido() {
+        return recorrido;
+    }
+
+    public void setRecorrido(List<Integer> recorrido) {
+        this.recorrido = recorrido;
+    }
+
+    public void recorridoToString(){
+        for (int i=0; i< recorrido.size(); i++){
+            System.out.print(recorrido.get(i)+" ");
+        }
+        System.out.println("");
     }
 }

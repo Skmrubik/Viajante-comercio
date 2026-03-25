@@ -3,6 +3,7 @@ package com.example.demo.viajante;
 import com.example.demo.viajante.services.Camino;
 import com.example.demo.viajante.services.CiudadesGenerator;
 import com.example.demo.viajante.services.Distancias;
+import com.example.demo.viajante.services.Poblacion;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -11,10 +12,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Stream;
 
 @SpringBootApplication
@@ -41,6 +39,20 @@ public class Application {
 
         Camino camino = new Camino(tam, distancias);
         System.out.println("Distancia "+ camino.distancia());
+        Poblacion poblacion = new Poblacion(tam, distancias);
+
+        for (int i=0; i<100; i++){
+            poblacion.nuevaGeneracion();
+        }
+        poblacion.getElite();
+        poblacion.getEliteCamino();
+        /*
+        Camino camino1= new Camino(tam, distancias);
+        Camino camino2= new Camino(tam, distancias);
+        camino1.recorridoToString();
+        camino2.recorridoToString();
+        Camino result = poblacion.obtenerHijo(camino1, camino2);
+        result.recorridoToString();*/
 
 	}
 
