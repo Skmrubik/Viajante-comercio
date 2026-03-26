@@ -1,0 +1,1 @@
+Generación de ciudades al azar, calculo de sus distancias y creación de un algoritmo genético que determina el camino más óptimo que encuentra desde la ciudad A a la ciudad A pasando por todas las ciudades. Cuando digo optimo, me refiero a de menos distancia.
