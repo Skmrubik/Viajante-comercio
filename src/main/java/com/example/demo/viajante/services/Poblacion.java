@@ -36,7 +36,12 @@ public class Poblacion {
             int res = d1.compareTo(d2);
             return res == 0 ? 1 : res; // Si son iguales, retorna 1 (lo mueve a la derecha)
         });
-        copiaPoblacion.putAll(poblacion);
+        //copiaPoblacion.putAll(poblacion);
+        for (Map.Entry<Double, Camino> entrada : poblacion.entrySet()) {
+            Double distancia = entrada.getKey();
+            Camino caminoAux = entrada.getValue();
+            copiaPoblacion.put(distancia, caminoAux);
+        }
         poblacion.clear();
         int contador = 0;
         Iterator<Map.Entry<Double, Camino>> it = copiaPoblacion.entrySet().iterator();
@@ -45,6 +50,12 @@ public class Poblacion {
             // Sacamos el primer elemento del par
             Map.Entry<Double, Camino> primero = it.next();
             Map.Entry<Double, Camino> segundo = it.next();
+            if (primero.getValue().getRecorrido().size()<10){
+                System.out.println("Aquí ha fallado el 1");
+            }
+            if (segundo.getValue().getRecorrido().size()<10){
+                System.out.println("Aquí ha fallado el 2");
+            }
             if (contador<47){
                 Camino hijo1 = obtenerHijo(primero.getValue(), segundo.getValue());
                 poblacion.put(hijo1.distancia(), hijo1);
@@ -55,15 +66,13 @@ public class Poblacion {
                 poblacion.put(primero.getKey(), primero.getValue());
                 poblacion.put(segundo.getKey(), segundo.getValue());
             }
-            System.out.println("---" + contador);
             contador++;
         }
-        System.out.println("");
     }
 
     public Camino obtenerHijo(Camino c1, Camino c2){
-        List<Integer> recorrido1 = c1.getRecorrido();
-        List<Integer> recorrido2 = c2.getRecorrido();
+        List<Integer> recorrido1 = new ArrayList<>(c1.getRecorrido());
+        List<Integer> recorrido2 = new ArrayList<>(c2.getRecorrido());
         int tam = recorrido1.size()/3;
         List<Integer> resultado = new ArrayList<>();
         for(int i=0; i<tam; i++){

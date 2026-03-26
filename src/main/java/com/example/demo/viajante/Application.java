@@ -21,8 +21,11 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
         CiudadesGenerator ciudades = new CiudadesGenerator();
-        int tam = 10;
+        int tam = 20;
+
+        //Generar ciudades y copiarlas en el fichero de ciudades, para ver las coordenadas
         //ciudades.generar(tam);
+        
         List<List<Integer>> ciudadesArray = ciudades.leerCiudades();
         Distancias distancias = new Distancias(tam);
         distancias.calcularDistancias(ciudadesArray);
@@ -41,18 +44,11 @@ public class Application {
         System.out.println("Distancia "+ camino.distancia());
         Poblacion poblacion = new Poblacion(tam, distancias);
 
-        for (int i=0; i<100; i++){
+        for (int i=0; i<10000; i++){
             poblacion.nuevaGeneracion();
         }
         poblacion.getElite();
         poblacion.getEliteCamino();
-        /*
-        Camino camino1= new Camino(tam, distancias);
-        Camino camino2= new Camino(tam, distancias);
-        camino1.recorridoToString();
-        camino2.recorridoToString();
-        Camino result = poblacion.obtenerHijo(camino1, camino2);
-        result.recorridoToString();*/
 
 	}
 
